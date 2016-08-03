@@ -15,6 +15,7 @@
     <div id="test3"></div>
     <div id="test4"></div>
     <div id="test5"></div>
+    <div id="test6"></div>
 <script>
     document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';</script>
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
@@ -22,7 +23,6 @@
 
 ;(function(win){
 
-    var timeDelay = 0;
     var Anictr = function(opts){
         this.ele = opts.ele;
         this.ani = opts.ani;
@@ -48,29 +48,51 @@
                 ele.style.cssText += ';animation-duration:' + second + ';-webkit-animation-duration:' + second;
             }
 
+            //删除原来的动画特效
             if(self.rani){
-                ele.className -= self.rani;
+                var classNames = ele.className.trim();
+                classNames = classNames.replace(/\s+/g,' ')
+                var classNameArr = classNames.split(' ');
+                for(var i = 0; i<classNameArr.length; i++){
+                    if(self.rani === classNameArr[i]){
+                        classNameArr.splice(i,1)
+
+                    }
+                }
+                ele.className = classNameArr.join(' ');
             }
 
-            ele.className += ' animated ' + self.ani;
+            if(/animated/.test(ele.className)){
+                ele.className +=  ' ' + self.ani;
+            }else{
+                ele.className += ' animated ' + self.ani;
+            }
+
             return self;
         },
-        then: function(obj){
+        then: function(arr,timeDelay){
             var self = this;
             var ele = document.querySelector(self.ele);
 
-            timeDelay += self.dur;
+            //then参数可以是多个对象组成的数组
+            if(arr.length != undefined){
+                setTimeout(function(){
+                    for(var j = 0; j<arr.length; j++){
+                        arr[j].go.call(arr[j])
+                    }
+                },timeDelay);
 
-            setTimeout(function(){
-                obj.go.call(obj)
-            },timeDelay);
+                return arr[arr.length - 1];
+            }else{
+                setTimeout(function(){
 
-            return obj;
+                    arr.go.call(arr)
+                },timeDelay);
+
+                return arr;
+            }
         }
     }
-
-
-
 
     win.Anictr = Anictr;
 })(window,undefined);
@@ -81,38 +103,31 @@
         dur:500,
         before:function(){}
     }).go().then(
-            new Anictr({
+            [new Anictr({
                 ele:'#test1',
                 rani:'zoomOut',
                 ani:'zoomIn',
                 dur:1000
-            })
+            }),new Anictr({
+                ele:'#test6',
+                ani:'zoomOutUp',
+                dur:1500
+            })],500
     ).then(
            new Anictr({
                ele:'#test2',
                ani:'zoomOut',
                dur:1200
-           })
+           }),1500
     ).then(
-            new Anictr({
+            [new Anictr({
                 ele:'#test3',
                 ani:'zoomOutUp',
                 dur:1500
-            })
-    )
+            })],2700
+    );
 
-new Anictr({
-    ele:'#test4',
-    ani:'zoomOut',
-    dur:1500,
-    before:function(){}
-}).go().then(
-        new Anictr({
-            ele:'#test5',
-            ani:'zoomOutUp',
-            dur:500,
-        })
-)
+
 
 </script>
 </body>
