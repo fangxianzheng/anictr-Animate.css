@@ -31,6 +31,9 @@
         if(opts.before){
             this.before = opts.before;
         }
+        if(opts.after){
+            this.after = opts.after;
+        }
         if(opts.rani){
             this.rani = opts.rani;
         }
@@ -41,7 +44,12 @@
             var self = this;
             var ele = document.querySelector(self.ele);
             if(self.before){
-                self.before(ele)
+                self.before(self)
+            }
+            if(self.after){
+                setTimeout(function(){
+                    self.after()
+                },self.dur)
             }
             if(self.dur){
                 var second = self.dur /1000 + 's';
@@ -85,7 +93,6 @@
                 return arr[arr.length - 1];
             }else{
                 setTimeout(function(){
-
                     arr.go.call(arr)
                 },timeDelay);
 
@@ -101,7 +108,8 @@
         ele:'#test1',
         ani:'zoomOut',
         dur:500,
-        before:function(){}
+        before:function(){console.log('haha')},
+        after:function(){console.log('hehe')}
     }).go().then(
             [new Anictr({
                 ele:'#test1',
