@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="animate.css" />
+
+</head>
+<body>
+
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+    <div id="test4"></div>
+    <div id="test5"></div>
+<script>
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';</script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+<script>
+
+;(function(win){
+
+    var timeDelay = 0;
+    var Anictr = function(opts){
+        this.ele = opts.ele;
+        this.ani = opts.ani;
+        this.dur = opts.dur;
+
+        if(opts.before){
+            this.before = opts.before;
+        }
+        if(opts.rani){
+            this.rani = opts.rani;
+        }
+    };
+
+    Anictr.prototype = {
+        go: function(){
+            var self = this;
+            var ele = document.querySelector(self.ele);
+            if(self.before){
+                self.before(ele)
+            }
+            if(self.dur){
+                var second = self.dur /1000 + 's';
+                ele.style.cssText += ';animation-duration:' + second + ';-webkit-animation-duration:' + second;
+            }
+
+            if(self.rani){
+                ele.className -= self.rani;
+            }
+
+            ele.className += ' animated ' + self.ani;
+            return self;
+        },
+        then: function(obj){
+            var self = this;
+            var ele = document.querySelector(self.ele);
+
+            timeDelay += self.dur;
+
+            setTimeout(function(){
+                obj.go.call(obj)
+            },timeDelay);
+
+            return obj;
+        }
+    }
+
+
+
+
+    win.Anictr = Anictr;
+})(window,undefined);
+
+    new Anictr({
+        ele:'#test1',
+        ani:'zoomOut',
+        dur:500,
+        before:function(){}
+    }).go().then(
+            new Anictr({
+                ele:'#test1',
+                rani:'zoomOut',
+                ani:'zoomIn',
+                dur:1000
+            })
+    ).then(
+           new Anictr({
+               ele:'#test2',
+               ani:'zoomOut',
+               dur:1200
+           })
+    ).then(
+            new Anictr({
+                ele:'#test3',
+                ani:'zoomOutUp',
+                dur:1500
+            })
+    )
+
+new Anictr({
+    ele:'#test4',
+    ani:'zoomOut',
+    dur:1500,
+    before:function(){}
+}).go().then(
+        new Anictr({
+            ele:'#test5',
+            ani:'zoomOutUp',
+            dur:500,
+        })
+)
+
+</script>
+</body>
+</html>
