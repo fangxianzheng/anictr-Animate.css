@@ -11,7 +11,7 @@
 <body>
 
     <div id="test1"></div>
-
+    <div id="test2"></div>
 <script>
     document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
 </script>
@@ -31,22 +31,14 @@
             dur:1000
         }),1000
     ).then(
-            [anictr({
-                ele:'#test1',
-                ani:'pulse',
-                dur:1000
-            }),anictr({
-                ele:'#test1',
-                ani:'pulse',
-                dur:1000
-            }),anictr({
-                ele:'#test1',
-                ani:'tada',
-                dur:1000
-            })],2000
-    ).then(
             anictr({
                 ele:'#test1',
+                ani:'pulse',
+                dur:1000
+            }),2000
+    ).then(
+            anictr({
+                ele:'#test2',
                 ani:'rubberBand',
                 dur:1000
             }),3000
@@ -70,7 +62,7 @@
             }),6000
     ).then(
             anictr({
-                ele:'#test1',
+                ele:'#test2',
                 ani:'wobble',
                 dur:1000
             }),7000

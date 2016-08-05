@@ -25,7 +25,8 @@
         go: function(){
             var self = this;
             var ele = document.querySelector(self.ele);
-            eleArr.push(self.ele);
+            eleArr.push({ele:ele,ani:self.ani});
+
             if(self.before){
                 self.before(self)
             }
@@ -48,46 +49,42 @@
 
             return self;
         },
-        then: function(arr,timeDelay){
+        then: function(obj,timeDelay){
             var self = this;
             var ele = document.querySelector(self.ele);
 
             //then参数可以是多个对象组成的数组
-            if(arr.length != undefined){
-                setTimeout(function(){
-                    removeOldAni(self)
-                    for(var j = 0; j<arr.length; j++){
+            setTimeout(function(){
+                //如果新的DOM之前操作过，清除之前的动画
+                removeOldAni(obj);
+                obj.go.call(obj)
+            },timeDelay);
 
-                        arr[j].go.call(arr[j])
-                    }
-                },timeDelay);
-
-                return arr[arr.length - 1];
-            }else{
-                setTimeout(function(){
-                    removeOldAni(self);
-                    arr.go.call(arr)
-                },timeDelay);
-
-                return arr;
-            }
+            return obj;
         }
     };
 
-    function removeOldAni(oldObj){
-        var ele = document.querySelector(oldObj.ele);
-        if(eleArr.indexOf(oldObj.ele) > -1){
-            var classNames = ele.className.trim();
-            classNames = classNames.replace(/\s+/g,' ')
-            var classNameArr = classNames.split(' ');
-            for(var i = 0; i<classNameArr.length; i++){
-                if(oldObj.ani === classNameArr[i]){
-                    classNameArr.splice(i,1)
-
-                }
+    function removeOldAni(obj){
+        var ele = document.querySelector(obj.ele);
+        for(var i= 0; i < eleArr.length; i++){
+            if(ele === eleArr[i].ele){
+                removeClass(ele, eleArr[i].ani)
+                eleArr.splice(i,1)
             }
-            ele.className = classNameArr.join(' ');
         }
+
+    }
+
+    function removeClass(ele, oldClass){
+        var classNames = ele.className.trim();
+        classNames = classNames.replace(/\s+/g,' ');
+        var classNameArr = classNames.split(' ');
+        for(var j = 0; j<classNameArr.length; j++){
+            if(oldClass === classNameArr[j]){
+                classNameArr.splice(j,1)
+            }
+        }
+        return ele.className = classNameArr.join(' ');
     }
 
     var anictr = function(opts){
