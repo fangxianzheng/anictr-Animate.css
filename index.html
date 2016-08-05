@@ -101,34 +101,37 @@
         }
     }
 
-    win.Anictr = Anictr;
+    var anictr = function(opts){
+        return new Anictr(opts)
+    }
+    win.anictr = anictr;
 })(window,undefined);
 
-    new Anictr({
+anictr({
         ele:'#test1',
         ani:'zoomOut',
         dur:500,
         before:function(){console.log('haha')},
         after:function(){console.log('hehe')}
     }).go().then(
-            [new Anictr({
+            [anictr({
                 ele:'#test1',
                 rani:'zoomOut',
                 ani:'zoomIn',
                 dur:1000
-            }),new Anictr({
+            }),anictr({
                 ele:'#test6',
                 ani:'zoomOutUp',
                 dur:1500
             })],500
     ).then(
-           new Anictr({
+            anictr({
                ele:'#test2',
                ani:'zoomOut',
                dur:1200
            }),1500
     ).then(
-            [new Anictr({
+            [anictr({
                 ele:'#test3',
                 ani:'zoomOutUp',
                 dur:1500,
