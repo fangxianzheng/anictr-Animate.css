@@ -10,37 +10,10 @@
   border: 0;
   box-sizing: border-box;
 }
-div{
-  margin-left:30px;
-  margin-top:10px;
-}
+
 #test1{
-  width:100px;
+  width:200px;
   height:100px;
   background-color:#afa;
-}
-#test2{
-  width:100px;
-  height:100px;
-  background-color:#faa;
-}
-#test3{
-  width:100px;
-  height:100px;
-  background-color:#aaf;
-}
-#test4{
-  width:100px;
-  height:100px;
-  background-color:#faf;
-}
-#test5{
-  width:100px;
-  height:100px;
-  background-color:#ffa;
-}
-#test6{
-  width:100px;
-  height:100px;
-  background-color:#aff;
+  margin:30px auto;
 }
