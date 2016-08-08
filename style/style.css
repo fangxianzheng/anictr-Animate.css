@@ -1,0 +1,89 @@
+* {
+  vertical-align: baseline;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  font-size: 100%;
+  outline: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box; }
+
+.clera_fl:after {
+  content: '';
+  display: block;
+  height: 0;
+  clear: both; }
+
+#test1 {
+  width: 200px;
+  height: 100px;
+  background-color: #afa;
+  margin: 60px auto; }
+
+.wrap1 {
+  width: 200px;
+  height: 200px;
+  margin: 100px auto; }
+  .wrap1 > div {
+    float: left;
+    width: 50%;
+    height: 100px;
+    visibility: hidden; }
+
+#test2 {
+  background-color: #aaf; }
+
+#test3 {
+  background-color: #ffa; }
+
+#test4 {
+  background-color: #faf; }
+
+#test5 {
+  background-color: #faa; }
+
+#test6 {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7); }
+
+#test7 {
+  width: 15rem;
+  height: 8rem;
+  background-color: #fff;
+  position: fixed;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  padding: 0.5rem;
+  text-align: center; }
+
+#open {
+  margin: 1rem; }
+
+#close {
+  display: block;
+  width: 10rem;
+  height: 2rem;
+  background-color: green;
+  color: #fff;
+  text-align: center;
+  line-height: 2rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 0.5rem; }
+
+/*# sourceMappingURL=style.css.map */

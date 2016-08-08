@@ -25,7 +25,7 @@
         go: function(){
             var self = this;
             var ele = document.querySelector(self.ele);
-            eleArr.push({ele:ele,ani:self.ani});
+
 
             if(self.before){
                 self.before(self)
@@ -39,8 +39,17 @@
                 var second = self.dur /1000 + 's';
                 ele.style.cssText += ';animation-duration:' + second + ';-webkit-animation-duration:' + second;
             }
-            
 
+            if(eleArr.length >0){
+                for(var k = 0; k<eleArr.length; k++){
+                    if(ele === eleArr[k].ele){
+                        removeClass(ele,eleArr[k].ani)
+                        eleArr.splice(k,1);
+                    }
+                }
+            }
+            console.log(ele.className)
+            eleArr.push({ele:ele,ani:self.ani});
             if(/animated/.test(ele.className)){
                 ele.className +=  ' ' + self.ani;
             }else{
@@ -87,6 +96,7 @@
         return ele.className = classNameArr.join(' ');
     }
 
+
     var anictr = function(opts){
         return new Anictr(opts)
     }
@@ -94,29 +104,3 @@
 })(window,undefined);
 
 
-
-/*
-anictr({
-    ele:'#test1',
-    ani:'zoomOut',
-    dur:500,
-    before:function(){console.log('haha')},
-    after:function(){console.log('hehe')}
-}).go().then(
-    [anictr({
-        ele:'#test1',
-        rani:'zoomOut',
-        ani:'zoomIn',
-        dur:1000
-    }),anictr({
-        ele:'#test6',
-        ani:'zoomOutUp',
-        dur:1500
-    })],500
-).then(
-    anictr({
-        ele:'#test2',
-        ani:'zoomOut',
-        dur:1200
-    }),1500
-)*/

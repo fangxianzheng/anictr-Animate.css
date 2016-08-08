@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>oneEle</title>
+    <link rel="stylesheet" type="text/css" href="../style/style.css" />
+    <link rel="stylesheet" type="text/css" href="../style/animate.css" />
+</head>
+<body>
+    <div id="test1"></div>
+
+
+    <script>
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 18.75 + 'px';
+    </script>
+    <script src="../src/anictr.js"></script>
+    <script>
+        anictr({
+            ele:'#test1',
+            ani:'bounce',
+            dur:1000,
+            before:function(obj){},
+            after:function(obj){}
+        }).go().then(
+                anictr({
+                    ele:'#test1',
+                    ani:'flash',
+                    dur:1000
+                }),1000
+        ).then(
+                anictr({
+                    ele:'#test1',
+                    ani:'pulse',
+                    dur:1000
+                }),2000
+        ).then(
+                anictr({
+                    ele:'#test1',
+                    ani:'rubberBand',
+                    dur:1000
+                }),3000
+        ).then(
+                anictr({
+                    ele:'#test1',
+                    ani:'shake',
+                    dur:1000
+                }),4000
+        ).then(
+                anictr({
+                    ele:'#test1',
+                    ani:'swing',
+                    dur:1000
+                }),5000
+        ).then(
+                anictr({
+                    ele:'#test1',
+                    ani:'tada',
+                    dur:1000
+                }),6000
+        ).then(
+                anictr({
+                    ele:'#test1',
+                    ani:'wobble',
+                    dur:1000
+                }),7000
+        ).then(
+                anictr({
+                    ele:'#test1',
+                    ani:'jello',
+                    dur:1000
+                }),8000
+        );
+    </script>
+
+</body>
+</html>

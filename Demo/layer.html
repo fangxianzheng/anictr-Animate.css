@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Layer</title>
+
+    <link rel="stylesheet" type="text/css" href="../style/animate.css" />
+    <link rel="stylesheet" type="text/css" href="../style/style.css" />
+</head>
+<body>
+    <input type="text" id="open" value="点击我" readonly />
+
+    <div id="test6" style="display:none"></div>
+    <div id="test7" style="display:none">内容内容内容内容内容内容内容内容内容容内容内容内容内容内容内容内容内容容内容内容内容内容内容内容内容内容容内容内容内容内容内容内容内容内容容内容内容内容内容内容内容内容内容容内容内容内容内容内容内容内容内容<span id="close">关闭</span></div>
+
+
+<script>
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 18.75 + 'px';
+</script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+<script src="../src/anictr.js"></script>
+<script>
+
+
+
+    $('#open').on('click',function(){
+        console.log(this)
+        anictr({
+            ele:'#test6',
+            ani:'fadeIn',
+            dur:'800',
+            before:function(obj){
+                var el = document.querySelector(obj.ele);
+                el.style.display = 'block'
+            }
+        }).go().then(
+                anictr({
+                    ele:'#test7',
+                    ani:'slideInUp',
+                    dur:'1000',
+                    before:function(obj){
+                        var el = document.querySelector(obj.ele);
+                        el.style.display = 'block'
+                    }
+                }),800
+        )
+    });
+
+    $('#close,#test6').on('click',function(){
+        console.log(this)
+        anictr({
+            ele:'#test7',
+            ani:'slideOutDown',
+            dur:'1000',
+            after:function(obj){
+                var el = document.querySelector(obj.ele);
+                el.style.display = 'none'
+            }
+        }).go().then(
+                anictr({
+                    ele:'#test6',
+                    ani:'fadeOut',
+                    dur:'800',
+                    after:function(obj){
+                        var el = document.querySelector(obj.ele);
+                        el.style.display = 'none'
+                    }
+                }),1000
+        )
+    })
+
+
+
+
+</script>
+
+</body>
+</html>

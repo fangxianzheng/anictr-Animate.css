@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>moreEles</title>
+    <link rel="stylesheet" type="text/css" href="../style/style.css" />
+    <link rel="stylesheet" type="text/css" href="../style/animate.css" />
+</head>
+<body>
+<div class="wrap1">
+    <div id="test2"></div>
+    <div id="test3"></div>
+    <div id="test4"></div>
+    <div id="test5"></div>
+</div>
+
+
+<script>
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 18.75 + 'px';
+</script>
+<script src="../src/anictr.js"></script>
+<script>
+    anictr({
+        ele:'#test2',
+        ani:'slideInLeft',
+        before:function(obj){
+            var el = document.querySelector(obj.ele);
+            el.style.visibility = 'visible';
+        },
+        dur:1000
+    }).go().then(
+            anictr({
+                ele:'#test3',
+                ani:'slideInDown',
+                before:function(obj){
+                    var el = document.querySelector(obj.ele);
+                    el.style.visibility = 'visible';
+                },
+                dur:1000
+            }),1000
+    ).then(
+            anictr({
+                ele:'#test5',
+                ani:'slideInRight',
+                before:function(obj){
+                    var el = document.querySelector(obj.ele);
+                    el.style.visibility = 'visible';
+                },
+                dur:1000
+            }),2000
+    ).then(
+            anictr({
+                ele:'#test4',
+                ani:'slideInUp',
+                before:function(obj){
+                    var el = document.querySelector(obj.ele);
+                    el.style.visibility = 'visible';
+                },
+                dur:1000
+            }),3000
+    ).then(
+            anictr({
+                ele:'#test2',
+                ani:'slideOutUp',
+                after:function(obj){
+                    var el = document.querySelector(obj.ele);
+                    el.style.visibility = 'hidden';
+                },
+                dur:1000
+            }),4000
+    ).then(
+            anictr({
+                ele:'#test3',
+                ani:'slideOutRight',
+                after:function(obj){
+                    var el = document.querySelector(obj.ele);
+                    el.style.visibility = 'hidden';
+                },
+                dur:1000
+            }),4000
+    ).then(
+            anictr({
+                ele:'#test4',
+                ani:'slideOutLeft',
+                after:function(obj){
+                    var el = document.querySelector(obj.ele);
+                    el.style.visibility = 'hidden';
+                },
+                dur:1000
+            }),4000
+    ).then(
+            anictr({
+                ele:'#test5',
+                ani:'slideOutDown',
+                after:function(obj){
+                    var el = document.querySelector(obj.ele);
+                    el.style.visibility = 'hidden';
+                },
+                dur:1000
+            }),4000
+    )
+
+</script>
+
+</body>
+</html>
