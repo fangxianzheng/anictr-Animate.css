@@ -48,7 +48,6 @@
                     }
                 }
             }
-            console.log(ele.className)
             eleArr.push({ele:ele,ani:self.ani});
             if(/animated/.test(ele.className)){
                 ele.className +=  ' ' + self.ani;
