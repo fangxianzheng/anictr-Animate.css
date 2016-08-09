@@ -2,67 +2,66 @@
 
 ## 简介
 
-移动端（基于Zepto/jQuery）的轮播插件：<http://ons.me/500.html>
+Animate.css是非常棒的CSS3动画库，然而因为存CSS3动画，使用很不灵活，所以创建了这个小型的库，用来让Animate.css更好的使用
 
 ## 示例
 
-![扫一扫](website.png)
-[普通轮播DEMO链接](http://ximan.github.io/swipeSlide/index.html)
-
-![扫一扫](website-pic.png)
-[全屏大图DEMO链接](http://ximan.github.io/swipeSlide/full-screen-pic.html)
-
-![扫一扫](website-text.png)
-[全屏文字DEMO链接](http://ximan.github.io/swipeSlide/full-screen-text.html)
-
-![扫一扫](website-switch.png)
-[快速切换DEMO链接](http://ximan.github.io/swipeSlide/index-switch.html)
-
-![扫一扫](website-comment.png)
-[点小图出大图DEMO链接](http://ximan.github.io/swipeSlide/comment-thumbnails.html)
+代码中有，在线的正在计划中
 
 ## 依赖
 
-Zepto 或者 jQuery
+Animate.css <http://daneden.github.io/animate.css/>
 
 ## 使用方法
 
 ````
-$('.element').swipeSlide({
-    // 参数
-});
+anictr({
+        ele:'#test2',
+        ani:'slideInLeft',
+        before:function(obj){
+            var el = document.querySelector(obj.ele);
+            el.style.visibility = 'visible';
+        },
+        dur:1000
+    }).go().then(
+            anictr({
+                ele:'#test3',
+                ani:'slideInDown',
+                before:function(obj){
+                    var el = document.querySelector(obj.ele);
+                    el.style.visibility = 'visible';
+                },
+                dur:1000
+            }),1000
+    )
 ````
 
 ## 参数列表
 
 |       参数        |   说明   |  默认值 |      可填值     |
 |------------------|----------|--------|----------------|
-| ul               | 父dom    | ul     | .element的子dom |
-| li               | 子dom    | li     | ul的子dom       |
-| index            | 轮播初始值 | 0     | 数字       |
-| continuousScroll | 连续滚动   | false | true和false |
-| autoSwipe        | 自动切换   | true  | true和false |
-| speed            | 切换速度   | 4000  | 数字        |
-| axisX            | X轴滚动   | true   | true和false |
-| transitionType   | 过渡类型   | ease  | linear/ease/ease-in/ease-out/ease-in-out/cubic-bezier |
-| lazyLoad         | 图片懒加载 | false | true和false |
-| firstCallback    | 页面加载回调| 空    | function(i,sum,me){}（i为索引值，sum为总和，me为自己） |
-| callback         | 每次滚动回调| 空    | function(i,sum,me){}（参数同上） |
+| ele              | 将要动画的元素   | 无 （必填）    | css选择器，如: '#test' |
+| ani               | Animate.css的动画名称    | 无（必填）     | 所有 Animate.css定义的动画     |
+| dur            | 动画时长 |  Animate.css的默认值   | 毫秒数，如: 1000       |
+| before | 动画开始前的function   | 无（带有个指向当前对象的参数） | 无|
+| after        | 动画结束后的function   | 无 （带有个指向当前对象的参数） | 无 |
+
 
 ## API
 
-暴露一些功能，可以让swipeSlide更灵活的使用
+`.go()`
 
-`goTo(num)` 指定轮播，详见[DEMO4代码](index-switch.html)
+开始动画，定义第一个元素的动画时必须要调用的方法。返回值为对象本身
 
-## 最新版本
 
-### 3.4.3(160615)
+`.then(obj, timeDelay)`
 
-* 修复点小图出大图DEMO，点击第4张图，滑动到第2张图无法懒加载bug
+跟在`.go()`或其他`.then(obj, timeDelay)`之后调用，参数`obj`为一个anictr对象，`timeDelay`为这个动画执行的时机（相对于整个时间轴的时间）。
 
-[所有更新日志](Changelog.md)
+## 优点
+
+可以很方便的创建出很实用有酷的动画，代码比单独使用Animate.css简洁了很多。
 
 ## 缺点
 
-只能固定高度或者成比例宽度，无法自适应高度。
+完全依赖于Animate.css，所以只能调用Animate.css定义了的动画。
