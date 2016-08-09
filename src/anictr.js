@@ -43,7 +43,7 @@
             if(eleArr.length >0){
                 for(var k = 0; k<eleArr.length; k++){
                     if(ele === eleArr[k].ele){
-                        removeClass(ele,eleArr[k].ani)
+                        removeClass(ele,eleArr[k].ani);
                         eleArr.splice(k,1);
                     }
                 }
@@ -53,6 +53,7 @@
                 ele.className +=  ' ' + self.ani;
             }else{
                 ele.className += ' animated ' + self.ani;
+                ele.className = ele.className.trim();
             }
 
             return self;
@@ -63,25 +64,13 @@
 
             //then参数可以是多个对象组成的数组
             setTimeout(function(){
-                //如果新的DOM之前操作过，清除之前的动画
-                removeOldAni(obj);
+
                 obj.go.call(obj)
             },timeDelay);
 
             return obj;
         }
     };
-
-    function removeOldAni(obj){
-        var ele = document.querySelector(obj.ele);
-        for(var i= 0; i < eleArr.length; i++){
-            if(ele === eleArr[i].ele){
-                removeClass(ele, eleArr[i].ani)
-                eleArr.splice(i,1)
-            }
-        }
-
-    }
 
     function removeClass(ele, oldClass){
         var classNames = ele.className.trim();
