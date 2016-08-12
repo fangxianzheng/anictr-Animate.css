@@ -9,6 +9,12 @@ Animate.css是非常棒的CSS3动画库，然而因为存CSS3动画，使用很�
 ![扫一扫](https://fangxianzheng.github.io/demo/anictr/demo1.png)
 [单个元素动画效果](https://fangxianzheng.github.io/demo/anictr/demo1.html)
 
+![扫一扫](https://fangxianzheng.github.io/demo/anictr/demo2.png)
+[单个元素动画效果](https://fangxianzheng.github.io/demo/anictr/demo2.html)
+
+![扫一扫](https://fangxianzheng.github.io/demo/anictr/demo3.png)
+[单个元素动画效果](https://fangxianzheng.github.io/demo/anictr/demo3.html)
+
 ## 依赖
 
 Animate.css <http://daneden.github.io/animate.css/>
